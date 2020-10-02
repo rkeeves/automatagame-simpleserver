@@ -1,4 +1,4 @@
-package controller;
+package com.deiksoftdev.automatagame.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
