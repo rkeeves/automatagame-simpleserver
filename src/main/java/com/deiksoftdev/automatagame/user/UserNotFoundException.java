@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.controller;
+package com.deiksoftdev.automatagame.user;
 
 public class UserNotFoundException extends RuntimeException  {
 

@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.model;
+package com.deiksoftdev.automatagame.user;
 
 
 import javax.persistence.Column;
