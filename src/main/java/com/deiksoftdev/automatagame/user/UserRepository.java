@@ -1,9 +1,7 @@
-package com.deiksoftdev.automatagame.repository;
+package com.deiksoftdev.automatagame.user;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.deiksoftdev.automatagame.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {

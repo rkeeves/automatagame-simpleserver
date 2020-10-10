@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame;
+package com.deiksoftdev.automatagame.user;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,9 +10,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.deiksoftdev.automatagame.controller.UserRestController;
-import com.deiksoftdev.automatagame.model.User;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
