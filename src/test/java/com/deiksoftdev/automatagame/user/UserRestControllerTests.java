@@ -11,9 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.deiksoftdev.automatagame.user.User;
-import com.deiksoftdev.automatagame.user.UserRestController;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
