@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.deiksoftdev.automatagame.controller.UserController;
+import com.deiksoftdev.automatagame.controller.UserRestController;
 import com.deiksoftdev.automatagame.model.User;
 
 import io.restassured.RestAssured;
@@ -19,7 +19,7 @@ import io.restassured.response.Response;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserControllerRestTests {
+public class UserRestControllerTests {
 
 	@LocalServerPort
     int port;
@@ -29,7 +29,7 @@ public class UserControllerRestTests {
 	@Before
     public void setup() {
         RestAssured.port = port;
-        api_root = "http://localhost:"+port+UserController.USER_API;
+        api_root = "http://localhost:"+port+UserRestController.USER_API;
     }
 	
 	private User createUser(String name, String email) {
