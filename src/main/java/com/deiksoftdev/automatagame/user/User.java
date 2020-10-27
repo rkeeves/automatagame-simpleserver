@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.user.model;
+package com.deiksoftdev.automatagame.user;
 
 
 import lombok.AllArgsConstructor;
