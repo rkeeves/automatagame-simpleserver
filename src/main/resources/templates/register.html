@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/register.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Sign Up</h4>
+                    <form th:action="@{/register}" th:object="${user}" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input id="name" th:field="*{name}" name="" class="form-control" placeholder="Full name"
+                                       type="text">
+                            </div>
+                            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                   class="help-block text-danger"
+                                   for="name"></label>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                <input th:field="*{email}" id="email" name="" class="form-control"
+                                       placeholder="Email address"
+                                       type="email">
+                            </div>
+                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                   class="help-block text-danger"
+                                   for="email"></label>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input th:field="*{password}" id="password" class="form-control"
+                                       placeholder="Password" type="password">
+                            </div>
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                   class="help-block text-danger"
+                                   for="password"></label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Create Account</button>
+                        </div>
+                        <p class="text-center">Already have an account?<a th:href="@{/login}"
+                                                                          class="btn btn-block"> <i
+                                class="fas fa-sign-in-alt"></i> &nbsp Login</a></p>
+                    </form>
+                </article>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>

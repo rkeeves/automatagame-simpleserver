@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Sign In</h4>
+                    <p th:if="${param.error}" class="error">Invalid user, password, or domain</p>
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input id="username" name="username" class="form-control" placeholder="User name"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input id="password" name="password" class="form-control"
+                                       placeholder="Password" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                        <p class="text-center">Don't have an account yet?<a th:href="@{/register}"
+                                                                          class="btn btn-block"> <i
+                                class="fas fa-sign-in-alt"></i> &nbsp Sign Up</a></p>
+                    </form>
+                </article>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sign Up Successful</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/registerSuccess.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <div class="card bg-light">
+                <article class="card-body mx-auto" th:object="${user}" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Sign Up Success</h4>
+                    <p class="text-center"><span th:text="'Hi '+${user.name} + ', you can now enter!'">You can now enter!</span>
+                        <a th:href="@{/login}" class="btn btn-block"> <i
+                            class="fas fa-sign-in-alt"></i> &nbsp Sign In</a></p>
+                </article>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-3 col-lg-4">
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>

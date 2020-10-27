@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Boostrap dependencies -->
+    <th:block th:fragment="bootstrap-css">
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    </th:block>
+    <!-- The global style and its dependencies -->
+    <th:block th:fragment="global-style">
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <!-- Google fonts Lato -->
+        <link th:href="@{/vendor/google-font/Lato.css}" rel="stylesheet">
+        <!-- Google fonts Catamaran -->
+        <link th:href="@{/vendor/google-font/Catamaran.css}" rel="stylesheet">
+        <!-- Global style -->
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="footer">
+    <footer class="py-5 bg-black">
+        <div class="container">
+            <p class="m-0 text-center text-white small">Automata Game 2020</p>
+        </div>
+    </footer>
+</th:block>
+<th:block th:fragment="bootstrap-js">
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Jquery -->
+    <script th:src="@{/vendor/jquery/jquery-3.5.1.min.js}"></script>
+    <!-- Bootstrap JS -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+</th:block>
+</body>
+</html>
