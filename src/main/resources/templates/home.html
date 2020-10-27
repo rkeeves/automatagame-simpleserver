@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <p th:sec:authentication="name"><p>
+    </div>
+    <div class="row">
+        <a href="#">Play Now</a>
+    </div>
+</div>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>
