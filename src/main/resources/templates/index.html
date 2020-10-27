@@ -2,16 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" >
-
-    <!-- Google fonts -->
-    <link th:href="@{/vendor/google-font/Catamaran.css}" rel="stylesheet">
-    <link th:href="@{/vendor/google-font/Lato.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link th:href="@{/css/styles.css}" rel="stylesheet" >
+    <title>Automata Game</title>
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
     <link th:href="@{/css/landing.css}" rel="stylesheet">
 </head>
 <body>
@@ -19,18 +12,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Project Automata</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
+                    <a class="nav-link" th:href="@{/register}">Sign up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/login}">Sign in</a>
@@ -49,21 +41,22 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide 0 -->
-            <div class="carousel-item active" th:style="'background-image:url(' + ${'/img/carousel/carousel_01.png'}+ ')'" >
+            <div class="carousel-item active"
+                 th:style="'background-image:url(' + ${'/img/carousel/carousel_01.png'}+ ')'">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Build</h2>
                     <p class="lead">You can place conveyors to transport the packets.</p>
                 </div>
             </div>
             <!-- Slide 1 -->
-            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_02.png'}+ ')'" >
+            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_02.png'}+ ')'">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Transport</h2>
                     <p class="lead">You can build whole systems from conveyors.</p>
                 </div>
             </div>
             <<!-- Slide 2 -->
-            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_03.png'}+ ')'" >
+            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_03.png'}+ ')'">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Transform</h2>
                     <p class="lead">You can place different machines to transform or direct the packets.</p>
@@ -86,7 +79,8 @@
     <div class="container">
         <h1 class="display-4">Can you solve it?</h1>
         <p class="lead">
-            Solve interesting <b>puzzles</b>, build elaborate <b>contraptions</b>, while you learn the basics of formal languages and logic!
+            Solve interesting <b>puzzles</b>, build elaborate <b>contraptions</b>, while you learn the basics of formal
+            languages and logic!
             <br>If you are interested, please check out the themes below!
         </p>
     </div>
@@ -103,7 +97,8 @@
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
                     <h2 class="display-4">Deterministic finite automaton</h2>
-                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/02-gyakorlat-determinisztikus-veges-automatak.html" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/02-gyakorlat-determinisztikus-veges-automatak.html"
+                       class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
                 </div>
             </div>
         </div>
@@ -121,20 +116,14 @@
             <div class="col-lg-6">
                 <div class="p-5">
                     <h2 class="display-4">Non-Deterministic finite automaton</h2>
-                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/04-nemdeterminisztikus-veges-automatak-regularis-kifejezesek.html" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/04-nemdeterminisztikus-veges-automatak-regularis-kifejezesek.html"
+                       class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<footer class="py-5 bg-black">
-    <div class="container">
-        <p class="m-0 text-center text-white small">Automata Game 2020</p>
-    </div>
-</footer>
-<!-- Bootstrap core JavaScript -->
-<script th:src="@{/vendor/jquery/jquery-3.5.1.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<th:block th:replace="fragments/parts.html :: footer"></th:block>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
 </body>
 </html>
