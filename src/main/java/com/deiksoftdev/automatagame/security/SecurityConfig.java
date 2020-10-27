@@ -1,8 +1,5 @@
-package com.deiksoftdev.automatagame.config;
+package com.deiksoftdev.automatagame.security;
 
-import com.deiksoftdev.automatagame.security.CustomAuthenticationFilter;
-import com.deiksoftdev.automatagame.security.CustomUserDetailsAuthenticationProvider;
-import com.deiksoftdev.automatagame.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -22,9 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    public SecurityConfig(PasswordEncoder passwordEncoder, CustomUserDetailsService customUserDetailsService){
+    public SecurityConfig(PasswordEncoder passwordEncoder, CustomUserDetailsService customUserDetailsService) {
         super();
-        this.passwordEncoder=passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
         this.customUserDetailsService = customUserDetailsService;
     }
 
@@ -34,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(authenticationFilter(), CustomAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/css/**","/vendor/**","/js/**","/img/**").permitAll()
+                .antMatchers("/css/**", "/vendor/**", "/js/**", "/img/**").permitAll()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").permitAll()
@@ -62,9 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public AuthenticationProvider authProvider() {
-        CustomUserDetailsAuthenticationProvider provider
-                = new CustomUserDetailsAuthenticationProvider(passwordEncoder, customUserDetailsService);
-        return provider;
+        return new CustomUserDetailsAuthenticationProvider(passwordEncoder, customUserDetailsService);
     }
 
     public SimpleUrlAuthenticationFailureHandler failureHandler() {
