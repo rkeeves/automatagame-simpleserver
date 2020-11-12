@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-sm-2 col-md-3 col-lg-4">
+            </div>
+            <div class="col-sm-8 col-md-6 col-lg-4">
+                <div class="card bg-light">
+                    <article class="card-body mx-auto" style="max-width: 400px;">
+                        <h4 class="card-title mt-3 text-center">Error 404</h4>
+                        <p >We don't have that sadly. :( </p>
+                        <a href="/" class="btn btn-block"> <i class="fas fa-home"> &nbsp;Back</i></a>
+                    </article>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-3 col-lg-4">
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>
