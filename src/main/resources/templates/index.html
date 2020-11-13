@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Automata Game</title>
+    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
+    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <link th:href="@{/css/landing.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Project Automata</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Sign in</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide 0 -->
+            <div class="carousel-item active"
+                 th:style="'background-image:url(' + ${'/img/carousel/carousel_01.png'}+ ')'">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Build</h2>
+                    <p class="lead">You can place conveyors to transport the packets.</p>
+                </div>
+            </div>
+            <!-- Slide 1 -->
+            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_02.png'}+ ')'">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Transport</h2>
+                    <p class="lead">You can build whole systems from conveyors.</p>
+                </div>
+            </div>
+            <<!-- Slide 2 -->
+            <div class="carousel-item" th:style="'background-image:url(' + ${'/img/carousel/carousel_03.png'}+ ')'">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Transform</h2>
+                    <p class="lead">You can place different machines to transform or direct the packets.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>
+
+<!-- Page Content -->
+<section class="py-5">
+    <div class="container">
+        <h1 class="display-4">Can you solve it?</h1>
+        <p class="lead">
+            Solve interesting <b>puzzles</b>, build elaborate <b>contraptions</b>, while you learn the basics of formal
+            languages and logic!
+            <br>If you are interested, please check out the themes below!
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid" th:src="@{/img/dfa.png}" alt="Deterministic finite automatons">
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Deterministic finite automaton</h2>
+                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/02-gyakorlat-determinisztikus-veges-automatak.html"
+                       class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid" th:src="@{/img/nfa.png}" alt="Non-Deterministic finite automatons">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h2 class="display-4">Non-Deterministic finite automaton</h2>
+                    <a href="https://beardybytes.com/university-of-debrecen/intro-to-compsci/04-nemdeterminisztikus-veges-automatak-regularis-kifejezesek.html"
+                       class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<th:block th:replace="fragments/parts.html :: footer"></th:block>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
+</body>
+</html>
