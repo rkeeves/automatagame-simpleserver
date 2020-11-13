@@ -9,3 +9,9 @@ You **MUST** install lombok to your **IDE** first, and also you must enable **An
 I really encourage the use of Intellij IDEA, but Eclipse also works for me.
 
 Use this guide to enable [Auto Reload](https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/) in IntelliJ.
+
+## Features
+
+The current version has the following major features:
+* User Sign up/ Sign in
+* Play game
