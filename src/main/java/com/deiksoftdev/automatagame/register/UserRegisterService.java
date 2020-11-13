@@ -34,6 +34,7 @@ public class UserRegisterService {
         user.setName(userRegisterDTO.getName());
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
         user.setEmail(userRegisterDTO.getEmail());
+        user.setAdmin(false);
         user = userRepository.save(user);
         return user;
     }

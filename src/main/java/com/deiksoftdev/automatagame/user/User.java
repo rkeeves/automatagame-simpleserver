@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -29,4 +29,10 @@ public class User {
 	@NotBlank(message = "Password is required")
 	@Column(nullable = false)
 	private String password;
+
+	@Column
+	private boolean admin;
+
+	@Column
+	private boolean disabled;
 }
