@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.LinkedList;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +18,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.<GrantedAuthority>singletonList(new SimpleGrantedAuthority("User"));
+        var authorities = new LinkedList<SimpleGrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if (user.isAdmin()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        return authorities;
     }
 
     @Override
@@ -48,6 +53,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !user.isDisabled();
     }
 }
