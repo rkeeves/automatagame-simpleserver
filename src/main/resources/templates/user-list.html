@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th sec:authorize="hasRole('ADMIN')">Email</th>
+                <th sec:authorize="hasRole('ADMIN')">Admin</th>
+                <th sec:authorize="hasRole('ADMIN')">Disabled</th>
+                <th sec:authorize="hasRole('ADMIN')">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td sec:authorize="hasRole('ADMIN')" th:text="${user.email}"></td>
+                <td sec:authorize="hasRole('ADMIN')" th:text="${user.isAdmin()}"></td>
+                <td sec:authorize="hasRole('ADMIN')" th:text="${user.isDisabled()}"></td>
+                <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/users/update/{id}(id=${user.id})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/users/update/{id}(id=${userUpdateDTO.getId()})}"
+      th:object="${userUpdateDTO}"
+      method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <label for="admin">Admin</label>
+    <input type="checkbox" th:field="*{admin}" id="admin" placeholder="admin">
+    <span th:if="${#fields.hasErrors('admin')}" th:errors="*{admin}"></span>
+    <label for="disabled">Disabled</label>
+    <input type="checkbox" th:field="*{disabled}" id="disabled" placeholder="disabled">
+    <span th:if="${#fields.hasErrors('disabled')}" th:errors="*{disabled}"></span>
+    <input type="submit" value="Update User">
+</form>
+</body>
+</html>
