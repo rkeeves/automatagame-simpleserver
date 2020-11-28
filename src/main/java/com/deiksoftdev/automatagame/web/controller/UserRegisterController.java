@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.web;
+package com.deiksoftdev.automatagame.web.controller;
 
 import com.deiksoftdev.automatagame.dto.UserRegisterDTO;
 import com.deiksoftdev.automatagame.service.UserRegisterService;
