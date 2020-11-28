@@ -1,36 +1,76 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- Boostrap dependencies -->
-    <th:block th:fragment="bootstrap-css">
-        <!-- Bootstrap core CSS -->
+    <th:block th:fragment="header (title)">
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title th:text="${title}">Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    </th:block>
-    <!-- The global style and its dependencies -->
-    <th:block th:fragment="global-style">
-        <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-        <!-- Google fonts Lato -->
         <link th:href="@{/vendor/google-font/Lato.css}" rel="stylesheet">
-        <!-- Google fonts Catamaran -->
         <link th:href="@{/vendor/google-font/Catamaran.css}" rel="stylesheet">
-        <!-- Global style -->
         <link th:href="@{/css/styles.css}" rel="stylesheet">
     </th:block>
 </head>
 <body>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" th:href="@{/}">Automata Game</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <a class="nav-link" th:href="@{/home}">Home</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <a class="nav-link" th:href="@{/users}">Users</a>
+                </li>
+                <li sec:authorize="isAuthenticated()"  class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Play</a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdown01">
+                        <a class="dropdown-item text-white bg-dark" th:href="@{/game/springtest}">Spring Test</a>
+                        <a class="dropdown-item text-white bg-dark" th:href="@{/unity/game/uncompressed.html}">Automata</a>
+                    </div>
+                </li>
+                <li sec:authorize="isAuthenticated()"  class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scores</a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdown02">
+                        <a class="dropdown-item text-white bg-dark" th:href="@{/score/dummy}">Dummy</a>
+                        <a class="dropdown-item text-white bg-dark" th:href="@{/score/automata}">Automata</a>
+                        <a class="dropdown-item text-white bg-dark" th:href="@{/score/spring-test}">Spring Test</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Sign up</a>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Sign in</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <span class="nav-link" th:text="'Logged in as ' + ${#authentication.getName()}">User</span>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</th:block>
 <th:block th:fragment="footer">
-    <footer class="py-5 bg-black">
-        <div class="container">
-            <p class="m-0 text-center text-white small">Automata Game 2020</p>
+    <footer class="navbar fixed-bottom text-white bg-black">
+        <div class="container d-flex justify-content-center">
+              Automata Game 2020
         </div>
     </footer>
 </th:block>
 <th:block th:fragment="bootstrap-js">
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Jquery -->
     <script th:src="@{/vendor/jquery/jquery-3.5.1.min.js}"></script>
     <!-- Bootstrap JS -->
