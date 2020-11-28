@@ -2,27 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Edit User</title>
+    <th:block th:replace="fragments/parts.html :: header (title='Update User')"></th:block>
 </head>
 <body>
-<form action="#"
-      th:action="@{/users/update/{id}(id=${userUpdateDTO.getId()})}"
-      th:object="${userUpdateDTO}"
-      method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <label for="admin">Admin</label>
-    <input type="checkbox" th:field="*{admin}" id="admin" placeholder="admin">
-    <span th:if="${#fields.hasErrors('admin')}" th:errors="*{admin}"></span>
-    <label for="disabled">Disabled</label>
-    <input type="checkbox" th:field="*{disabled}" id="disabled" placeholder="disabled">
-    <span th:if="${#fields.hasErrors('disabled')}" th:errors="*{disabled}"></span>
-    <input type="submit" value="Update User">
-</form>
+<th:block th:replace="fragments/parts.html :: navbar"></th:block>
+
+<div class="container">
+
+    <form class="col-lg-6 offset-lg-3"
+          th:action="@{/users/update/{id}(id=${userUpdateDTO.getId()})}"
+          th:object="${userUpdateDTO}"
+          method="post">
+        <div class="form-group">
+            <div class="h2 text-center">Update User</div>
+            </div>
+            <div class="form-group">
+                <label for="name">User name</label>
+                <input id="name" th:field="*{name}" name="" class="form-control" placeholder="Name"
+                       type="text">
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                       class="help-block text-danger"
+                       for="name"></small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input th:field="*{email}" id="email" name="" class="form-control"
+                       placeholder="Email address"
+                       type="email">
+                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                       class="help-block text-danger"
+                       for="email"></small>
+            </div>
+            <div class="form-group form-check">
+                <input th:field="*{admin}" id="admin" class="form-check-input"
+                       placeholder="false" type="checkbox">
+                <label for="admin">Is Admin?</label>
+            </div>
+            <div class="form-group form-check">
+
+                <input th:field="*{disabled}" id="disabled" class="form-check-input"
+                       placeholder="false" type="checkbox">
+                <label for="disabled">Is Disabled?</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Update User</button>
+
+    </form>
+</div>
+<th:block th:replace="fragments/parts.html :: footer"></th:block>
+<th:block th:replace="fragments/parts.html :: bootstrap-js"></th:block>
 </body>
 </html>
