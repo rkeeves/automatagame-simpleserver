@@ -1,7 +1,7 @@
 package com.deiksoftdev.automatagame.security;
 
-import com.deiksoftdev.automatagame.user.User;
-import com.deiksoftdev.automatagame.user.UserRepository;
+import com.deiksoftdev.automatagame.model.User;
+import com.deiksoftdev.automatagame.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.home;
+package com.deiksoftdev.automatagame.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

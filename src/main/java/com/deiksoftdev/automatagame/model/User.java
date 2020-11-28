@@ -4,35 +4,34 @@ package com.deiksoftdev.automatagame.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "users")
 public class User {
 
+	@Transient
+	public static final String SEQUENCE_NAME = "users_sequence";
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@NotBlank(message = "Name is required")
-	@Column(nullable = false, unique = true)
 	private String name;
 	
 	@NotBlank(message = "Email is required")
-	@Column(nullable = false, unique = true)
 	private String email;
 
 	@NotBlank(message = "Password is required")
-	@Column(nullable = false)
 	private String password;
 
-	@Column
 	private boolean admin;
 
-	@Column
 	private boolean disabled;
 }

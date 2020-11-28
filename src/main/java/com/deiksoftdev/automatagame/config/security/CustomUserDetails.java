@@ -1,6 +1,6 @@
 package com.deiksoftdev.automatagame.security;
 
-import com.deiksoftdev.automatagame.user.User;
+import com.deiksoftdev.automatagame.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
