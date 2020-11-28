@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.user;
+package com.deiksoftdev.automatagame.model;
 
 
 import lombok.AllArgsConstructor;
@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -34,4 +35,14 @@ public class User {
 	private boolean admin;
 
 	private boolean disabled;
+
+	private Map<String,Integer> scores;
+
+	public Integer getScore(String scenario){
+		return scores.getOrDefault(scenario,0);
+	}
+
+	public void setScore(String scenario, Integer score) {
+		scores.put(scenario,score);
+	}
 }
