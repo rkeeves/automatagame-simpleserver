@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.resourceserving;
+package com.deiksoftdev.automatagame.config.resourceserving;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
