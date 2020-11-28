@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/parts.html :: header (title='Unity WebGL Player | SpringCommunicationTest')"></th:block>
+    <link rel="shortcut icon" th:href="@{~/unity/SpringCommunicationTest/TemplateData/favicon.ico}">
+    <link rel="stylesheet" th:href="@{~/unity/SpringCommunicationTest/TemplateData/style.css}">
+</head>
+<body>
+<th:block th:replace="fragments/parts.html :: navbar"></th:block>
+<div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas"></canvas>
+    <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+        </div>
+    </div>
+    <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">SpringCommunicationTest</div>
+    </div>
+</div>
+<script th:inline="javascript">
+    const server = 'http://localhost:8080';
+    const userName = /*[[${currentUser.getName()}]]*/ 'user';
+    console.log(userName);
+    var buildUrl = /*[[@{~/unity/SpringCommunicationTest/Build}]]*/ "unity/SpringCommunicationTest/Build";
+    var loaderUrl = buildUrl + "/SpringCommunicationTest.loader.js";
+    var config = {
+        dataUrl: buildUrl + "/SpringCommunicationTest.data",
+        frameworkUrl: buildUrl + "/SpringCommunicationTest.framework.js",
+        codeUrl: buildUrl + "/SpringCommunicationTest.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "SpringCommunicationTest",
+        productVersion: "1.0",
+    };
+
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+    } else {
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+    }
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+            progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+            loadingBar.style.display = "none";
+            unityInstance.SendMessage('CustomConfiguration','SetContext',server);
+            unityInstance.SendMessage('CustomConfiguration','SetUserName',userName);
+            unityInstance.SendMessage('CustomConfiguration','SetScenario','spring-test');
+            fullscreenButton.onclick = () => {
+                unityInstance.SetFullscreen(1);
+            };
+        }).catch((message) => {
+            alert(message);
+        });
+    };
+    document.body.appendChild(script);
+</script>
+</body>
+</html>
