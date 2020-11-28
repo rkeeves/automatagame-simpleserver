@@ -1,23 +1,21 @@
-package com.deiksoftdev.automatagame.register;
+package com.deiksoftdev.automatagame.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class UserRegisterDTO {
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message="name cant be blank")
     private String name;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message="password cant be blank")
     private String password;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message="email cant be blank")
+    @Email(message="email must be a valid email address")
     private String email;
 
 }

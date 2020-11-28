@@ -1,21 +1,18 @@
-package com.deiksoftdev.automatagame.users;
+package com.deiksoftdev.automatagame.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class UserUpdateDTO {
 
     private long id;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message="name cant be blank")
     private String name;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message="email cant be blank")
     private String email;
 
     private boolean admin;
