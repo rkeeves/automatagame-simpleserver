@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.register;
+package com.deiksoftdev.automatagame.exception;
 
 public class UserNameAlreadyExistsException extends Exception {
 
