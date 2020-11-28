@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Registration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <th:block th:replace="fragments/parts.html :: bootstrap-css"></th:block>
-    <th:block th:replace="fragments/parts.html :: global-style"></th:block>
+    <th:block th:replace="fragments/parts.html :: header (title='Login')"></th:block>
     <link th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 <body>
