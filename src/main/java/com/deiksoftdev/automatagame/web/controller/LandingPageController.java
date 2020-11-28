@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.web;
+package com.deiksoftdev.automatagame.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

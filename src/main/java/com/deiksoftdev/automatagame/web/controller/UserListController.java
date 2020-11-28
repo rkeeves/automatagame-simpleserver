@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.web;
+package com.deiksoftdev.automatagame.web.controller;
 
 import com.deiksoftdev.automatagame.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
