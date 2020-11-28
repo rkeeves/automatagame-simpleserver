@@ -1,31 +1,31 @@
-package com.deiksoftdev.automatagame.security;
+package com.deiksoftdev.automatagame.preloader;
 
+import com.deiksoftdev.automatagame.dto.UserRegisterDTO;
 import com.deiksoftdev.automatagame.model.User;
-import com.deiksoftdev.automatagame.model.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.deiksoftdev.automatagame.service.UserRegisterService;
+import com.deiksoftdev.automatagame.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.FieldError;
 
-/**
- * This is a short lived class until a standalone db will be in place.
- */
+import java.util.List;
+
 @Component
-public class SecurityDataPreloader implements ApplicationListener<ContextRefreshedEvent> {
+@RequiredArgsConstructor
+public class UserPreloader implements ApplicationListener<ContextRefreshedEvent> {
+
+    Logger logger = LoggerFactory.getLogger(UserPreloader.class);
 
     boolean alreadySetup = false;
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public SecurityDataPreloader(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final UserRegisterService userRegisterService;
 
     @Override
     @Transactional
@@ -33,22 +33,33 @@ public class SecurityDataPreloader implements ApplicationListener<ContextRefresh
         if (alreadySetup) {
             return;
         }
-        getUserCreateIfAbsent("user", "user@user.com", "user", false);
-        getUserCreateIfAbsent("admin", "admin@admin.com", "admin", true);
+        logger.info("Try preloading default admin");
+        createUserIfAbsent("admin", "admin@admin.com", "admin", true);
+        logger.info("Try preloading default user");
+        createUserIfAbsent("user", "user@user.com", "user", false);
         alreadySetup = true;
     }
 
     @Transactional
-    User getUserCreateIfAbsent(String name, String email, String password, boolean isAdmin) {
-        var user = userRepository.findByName(name);
-        if (user == null) {
-            user = new User();
-            user.setName(name);
-            user.setEmail(email);
-            user.setPassword(passwordEncoder.encode(password));
-            user.setAdmin(isAdmin);
-            return userRepository.save(user);
+    void createUserIfAbsent(String name, String email, String password, boolean isAdmin){
+        User user = userService.findByName(name);
+        if(user!=null) {
+            logger.warn("User entity with name: {}, already exists", name);
+            return;
         }
-        return user;
+        UserRegisterDTO dto = new UserRegisterDTO();
+        dto.setName(name);
+        dto.setEmail(email);
+        dto.setPassword(password);
+        List<FieldError> errors = userRegisterService.createUser(dto,isAdmin);
+        if(errors.isEmpty()){
+            logger.warn("Created user entity with name: {}, isAdmin: {}",name, isAdmin);
+            return;
+        }
+        logger.error("Wasn't able to create user entity with name: {}, isAdmin: {}",name, isAdmin);
+        logger.error("Validation errors occurred");
+        errors.stream()
+                .map(Object::toString)
+                .forEach(logger::error);
     }
 }
