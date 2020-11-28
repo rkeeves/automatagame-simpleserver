@@ -2,47 +2,29 @@ package com.deiksoftdev.automatagame.service;
 
 import com.deiksoftdev.automatagame.dto.UserUpdateDTO;
 import com.deiksoftdev.automatagame.exception.UserByIdNotRegisteredException;
-import com.deiksoftdev.automatagame.exception.UserEmailAlreadyExistsException;
-import com.deiksoftdev.automatagame.exception.UserNameAlreadyExistsException;
 import com.deiksoftdev.automatagame.model.User;
 import com.deiksoftdev.automatagame.model.UserRepository;
+import com.deiksoftdev.automatagame.service.validation.UserUpdateDTOValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserUpdateService {
 
     private final UserRepository userRepository;
 
-    private final UserValidatorService userValidator;
+    private final UserUpdateDTOValidator userUpdateDTOValidator;
 
     public UserUpdateDTO createUserUpdateDTOById(Long id) throws UserByIdNotRegisteredException {
         User user = userRepository
                 .findById(id)
                 .orElseThrow(() -> new UserByIdNotRegisteredException());
         return createUserUpdateDTO(user);
-    }
-    
-    @Transactional
-    public User updateUser(long id, UserUpdateDTO userUpdateDTO)
-            throws UserNameAlreadyExistsException, UserEmailAlreadyExistsException, UserByIdNotRegisteredException {
-        var user = userRepository.findById(id).orElseThrow(()->new UserByIdNotRegisteredException());
-        if (!user.getName().equals(userUpdateDTO.getName())) {
-            userValidator.checkNameExists(userUpdateDTO.getName());
-            user.setName(userUpdateDTO.getName());
-        }
-        if (!user.getEmail().equals(userUpdateDTO.getEmail())) {
-            userValidator.checkEmailExists(userUpdateDTO.getEmail());
-            user.setEmail(userUpdateDTO.getEmail());
-        }
-        user.setAdmin(userUpdateDTO.isAdmin());
-        user.setDisabled(userUpdateDTO.isDisabled());
-        return userRepository.save(user);
     }
 
     private UserUpdateDTO createUserUpdateDTO(User user){
@@ -56,17 +38,21 @@ public class UserService {
     }
 
     @Transactional
-    public Iterable<User> findAll(){
-        return userRepository.findAll();
-    }
-
-    @Transactional
-    public Optional<User> findById(long id){
-        return userRepository.findById(id);
-    }
-
-    @Transactional
-    public User findByName(String name) {
-        return userRepository.findByName(name);
+    public void updateUser(BindingResult result, UserUpdateDTO userUpdateDTO) {
+        final var optionalUser = userRepository.findById(userUpdateDTO.getId());
+        if(optionalUser.isEmpty()){
+            result.addError(new ObjectError(result.getObjectName(), "User with specified ID not found"));
+            return;
+        }
+        userUpdateDTOValidator.validate(result,userUpdateDTO);
+        if(result.hasErrors()){
+            return;
+        }
+        final var user = optionalUser.get();
+        user.setName(userUpdateDTO.getName());
+        user.setEmail(userUpdateDTO.getEmail());
+        user.setAdmin(userUpdateDTO.isAdmin());
+        user.setDisabled(userUpdateDTO.isDisabled());
+        userRepository.save(user);
     }
 }
