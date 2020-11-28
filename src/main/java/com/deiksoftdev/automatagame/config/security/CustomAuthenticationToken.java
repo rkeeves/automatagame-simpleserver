@@ -1,4 +1,4 @@
-package com.deiksoftdev.automatagame.security;
+package com.deiksoftdev.automatagame.config.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

@@ -1,5 +1,6 @@
-package com.deiksoftdev.automatagame.security;
+package com.deiksoftdev.automatagame.config.security;
 
+import com.deiksoftdev.automatagame.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -43,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                .logoutSuccessUrl("/index")
                 .and().csrf().disable();
     }
 

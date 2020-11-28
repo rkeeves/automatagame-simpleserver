@@ -1,5 +1,6 @@
-package com.deiksoftdev.automatagame.security;
+package com.deiksoftdev.automatagame.config.security;
 
+import com.deiksoftdev.automatagame.service.CustomUserDetailsService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
